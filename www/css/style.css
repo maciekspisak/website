@@ -1,0 +1,64 @@
+:root{
+	--font-color:#f1fa8c;
+	--background-primary-color:#282a36;
+	--background-secondary-color:#19191f;
+
+	--primary-color:#50fa7b;
+	--primary-color-faded:#0e2b15;
+	--secondary-color-1:#ffb86c;
+	--secondary-color-2:#8be9fd;
+	--secondary-color-3:#bd93f9;
+	--secondary-color-4:#ff5555;
+	--secondary-color-5:#ff79c6;
+	}
+
+a{
+	font-size: 0.625rem;
+	color: #929292;
+	text-decoration: none;
+	text-align: right;
+}
+
+body{
+	color: var(--font-color);
+	background-color: var(--background-secondary-color);
+}
+
+.box-element{
+	background-color: var(--background-primary-color);
+	display: flex;
+	flex-wrap: wrap;
+  justify-content: center;
+}
+
+.calendar-chart{
+	width: 950px;
+	margin: auto;
+  display: inline-block;
+	vertical-align: middle;
+}
+
+.chart{
+	height: 350px;
+	width: 100%;
+}
+
+.dashboard-navigation{
+	width: 100%;
+	text-align: center;
+	font-size: 2rem;
+}
+
+.calendar-chart-wrapper{
+	-ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+	scrollbar-width: none;  /* Hide scrollbar for Firefox */
+	width: 95%;
+	height: 350px;
+	line-height: 350px;
+	text-align: center;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.calendar-chart-wrapper::-webkit-scrollbar{
+  display: none;
+}
