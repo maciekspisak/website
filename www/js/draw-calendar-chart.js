@@ -4,7 +4,7 @@ import * as colorManager from './color-manager.js';
 /**
  * Draws calendar chart in selected HTML element using anychart library.
  * @param {string} elementId 
- * @param chartData
+ * @param {Object} chartData
  */
 export function drawCalendarChart(elementId, chartData) {
   if (!chartData || chartData.length === 0) return;
