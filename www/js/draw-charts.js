@@ -1,21 +1,21 @@
-import * as callGoogleApi from './call-google-api.js';
-import * as processEvents from './process-events.js';
-import * as drawLinearChart from './draw-linear-chart.js';
-import * as drawBarChart from './draw-bar-chart.js';
-import * as drawPieChart from './draw-pie-chart.js';
-import * as drawCalendarChart from './draw-calendar-chart.js';
+import {googleApiLoaded} from './call-google-api.js';
+import {processEvents} from './process-events.js';
+import {drawLinearChart} from './draw-linear-chart.js';
+import {drawBarChart} from './draw-bar-chart.js';
+import {drawPieChart} from './draw-pie-chart.js';
+import {drawCalendarChart} from './draw-calendar-chart.js';
 
 
 async function drawCharts() {
-  const apiInitializationFunction = await callGoogleApi.googleApiLoaded();
+  const apiInitializationFunction = await googleApiLoaded();
   const events = await apiInitializationFunction();
-  const chartData = processEvents.processEvents(events);
+  const chartData = processEvents(events);
 
-  drawLinearChart.drawLinearChart('linear_chart');
-  drawBarChart.drawBarChart('bar_chart');
-  drawPieChart.drawPieChart('pie_chart');
-  drawPieChart.drawPieChart('pie_chart_2');
-  drawCalendarChart.drawCalendarChart('calendar_chart', chartData);
+  drawLinearChart('linear_chart');
+  drawBarChart('bar_chart');
+  drawPieChart('pie_chart');
+  drawPieChart('pie_chart_2');
+  drawCalendarChart('calendar_chart', chartData);
 }
 
-drawCharts()
+drawCharts();

@@ -6,7 +6,7 @@ function convertTimeZone(date, timeZoneString) {
 }
 
 function formatDateString(dateString) {
-  let date = new Date(dateString);
+  const date = new Date(dateString);
   return String(date.getFullYear()) + '-' 
     + zeroPrefix(String(date.getMonth() + 1)) + '-' 
     + zeroPrefix(String(date.getDate()));

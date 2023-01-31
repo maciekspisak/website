@@ -1,9 +1,9 @@
-import * as colorManager from './color-manager.js';
+import {draculaPalette} from './color-manager.js';
 
 
 export function setChart(chart, elementId) {
   chart.container(elementId)
     .background({enabled: false})
-    .palette(colorManager.draculaPalette)
+    .palette(draculaPalette)
     .interactivity({selectionMode: 'none'});
 }

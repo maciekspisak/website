@@ -1,14 +1,14 @@
-let fontColor = getComputedStyle(document.documentElement).getPropertyValue('--font-color');
-let backgroundPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--background-primary-color');
-let backgroundSecondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--background-secondary-color');
+const fontColor = getComputedStyle(document.documentElement).getPropertyValue('--font-color');
+const backgroundPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--background-primary-color');
+const backgroundSecondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--background-secondary-color');
 
-let primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
-let primaryColorFaded = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-faded');
-let secondaryColor1 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-1');
-let secondaryColor2 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-2');
-let secondaryColor3 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-3');
-let secondaryColor4 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-4');
-let secondaryColor5 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-5');
+const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+const primaryColorFaded = getComputedStyle(document.documentElement).getPropertyValue('--primary-color-faded');
+const secondaryColor1 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-1');
+const secondaryColor2 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-2');
+const secondaryColor3 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-3');
+const secondaryColor4 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-4');
+const secondaryColor5 = getComputedStyle(document.documentElement).getPropertyValue('--secondary-color-5');
 
 let draculaPalette = anychart.palettes.distinctColors();
 draculaPalette.items(

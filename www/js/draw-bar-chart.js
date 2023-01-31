@@ -1,5 +1,5 @@
-import * as setChart from './set-chart.js';
-import * as setChartAxes from './set-chart-axes.js';
+import {setChart} from './set-chart.js';
+import {setChartAxes} from './set-chart-axes.js';
 
 
 export function drawBarChart(elementId) {
@@ -7,8 +7,8 @@ export function drawBarChart(elementId) {
     data => {
       let chart = anychart.bar(data);
 
-      setChart.setChart(chart, elementId);
-      setChartAxes.setChartAxes(chart);
+      setChart(chart, elementId);
+      setChartAxes(chart);
       chart.draw();
     }
   );
