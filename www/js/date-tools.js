@@ -1,3 +1,6 @@
+const milisecondsInMinute = 1000 * 60;
+const milisecondsInDay = milisecondsInMinute * 60 * 24;
+
 /** 
  * Changes given date into the local date formatted in 'en-US' format.
  * @param {string} date - Date to be converted.
@@ -42,6 +45,8 @@ function setTimeToMidnight(dateTime) {
 }
 
 export {
+  milisecondsInMinute,
+  milisecondsInDay,
   convertTimeZone,
   formatDateString,
   setTimeToMidnight

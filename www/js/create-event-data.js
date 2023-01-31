@@ -28,8 +28,8 @@ function createDurationList(startDateTime, endDateTime) {
   const end = new Date(endDateTime);
   const endDate = dateTools.formatDateString(end.toDateString());
 
-  const milisecondsInMinute = 1000 * 60;
-  const milisecondsInDay = milisecondsInMinute * 60 * 24;
+  const milisecondsInMinute = dateTools.milisecondsInMinute;
+  const milisecondsInDay = dateTools.milisecondsInDay;
 
   if (startDate === endDate) {
     return {[startDate]: (end - start) / milisecondsInMinute};
