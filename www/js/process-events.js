@@ -1,6 +1,9 @@
 import {createEventData} from './create-event-data.js';
 
 
+/** Takes events list returned by Google API 
+ * and processes them into charts data.
+ */
 export function processEvents(events) {
   if (!events || events.length == 0) return;
 
@@ -10,6 +13,12 @@ export function processEvents(events) {
   return chartData;
 }
 
+/**
+ * Fills an array with new keys from durationList 
+ * or cumulates values of keys already in array.
+ * @param {Array.<Object>} array
+ * @param {Object} durationList
+ */
 function pushOrAddDuration(array, durationList) {
   for (const [key, value] of Object.entries(durationList)) {
     if (array.length === 0) {

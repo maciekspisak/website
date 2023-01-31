@@ -1,6 +1,7 @@
 import {fontColor} from './color-manager.js';
 
 
+/** Configures anychart chart axes. */
 export function setChartAxes(chart) {
   let xAxis = chart.xAxis();
   xAxis.stroke({thickness: 0})

@@ -2,6 +2,10 @@ import {fontColor} from './color-manager.js';
 import {setChart} from './set-chart.js';
 
 
+/**
+ * Draws pie chart in selected HTML element using anychart library.
+ * @param {string} elementId 
+ */
 export function drawPieChart(elementId) {
   anychart.data.loadJsonFile('/data/pie-data.json',
     data => {

@@ -2,7 +2,8 @@ const apiKey = 'AIzaSyDn17JQGhTlYiBL5n4X_0l0R9X1jclNPXc';
 const discoveryDoc = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest';
 const calendarId = 'fbb133dfa5aef25d1031b71c1c0d53d1126515ef32d14bfa4de5ff2608bfc881@group.calendar.google.com';
 
-export async function googleApiLoaded() {
+/** Asynchronously loads the gapi client library. */
+export async function loadClientLibrary() {
   return new Promise(resolve => gapi.load('client', () => resolve(initializeGoogleApiClient)));
 }
 
@@ -15,6 +16,7 @@ async function initializeGoogleApiClient() {
   return fetchEvents();
 }
 
+/** Serves Google API calendar events request. */
 async function fetchEvents() {
   let response;
   try {

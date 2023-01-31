@@ -1,9 +1,14 @@
 import * as colorManager from './color-manager.js';
 
 
+/**
+ * Draws calendar chart in selected HTML element using anychart library.
+ * @param {string} elementId 
+ * @param chartData
+ */
 export function drawCalendarChart(elementId, chartData) {
   if (!chartData || chartData.length === 0) return;
-  
+
   let formattedData = JSON.parse(JSON.stringify(chartData));
   formattedData.forEach(day => day.value = (Math.round(day.value / 6) / 10));
   const dataset = anychart.data.set(formattedData);

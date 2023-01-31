@@ -1,10 +1,19 @@
-function convertTimeZone(date, timeZoneString) {
+/** 
+ * Changes given date into the local date formatted in 'en-US' format.
+ * @param {string} date - Date to be converted.
+ * @param {string} timeZone - Timezone database name.
+ */
+function convertTimeZone(date, timeZone) {
   // for day-long events timezone is undefined - assume calendar to be UTC-aligned then
-  if (!timeZoneString) timeZoneString = 'UTC';
+  if (!timeZone) timeZone = 'UTC';
   
-  return new Date(date).toLocaleString('en-US', {timeZone: timeZoneString});
+  return new Date(date).toLocaleString('en-US', {timeZone: timeZone});
 }
 
+/**
+ * Changes date format to 'YYYY-MM-DD'.
+ * @param {string} dateString - String to be formatted.
+ */
 function formatDateString(dateString) {
   const date = new Date(dateString);
   return String(date.getFullYear()) + '-' 
@@ -12,11 +21,19 @@ function formatDateString(dateString) {
     + zeroPrefix(String(date.getDate()));
 }
 
+/**
+ * Adds zero before string representing month or day < 10.
+ * @param {string} string - Day or month to be checked.
+ */
 function zeroPrefix(string) {
   if (string.length === 1) {return '0' + string};
   return string;
 }
 
+/**
+ * Changes all the properties connected with time to 0. 
+ * @param {Date} dateTime
+ */
 function setTimeToMidnight(dateTime) {
   dateTime.setHours(0);
   dateTime.setMinutes(0);

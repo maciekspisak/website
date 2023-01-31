@@ -1,6 +1,10 @@
 import * as dateTools from './date-tools.js';
 
 
+/**
+ * Creates data suitable for charts.
+ * @param {Event} event 
+ */
 export function createEventData(event) {
   const startDateTime = dateTools.convertTimeZone(event.start.dateTime || event.start.date, event.start.timeZone);
   const endDateTime = dateTools.convertTimeZone(event.end.dateTime || event.end.date, event.end.timeZone);
@@ -13,10 +17,15 @@ export function createEventData(event) {
   };
 }
 
-function createDurationList(startDateTimeString, endDateTimeString) {
-  const start = new Date(startDateTimeString);
+/**
+ * Creates object matching date with event duration.
+ * @param {string} startDateTime 
+ * @param {string} endDateTime 
+ */
+function createDurationList(startDateTime, endDateTime) {
+  const start = new Date(startDateTime);
   const startDate = dateTools.formatDateString(start.toDateString());
-  const end = new Date(endDateTimeString);
+  const end = new Date(endDateTime);
   const endDate = dateTools.formatDateString(end.toDateString());
 
   const milisecondsInMinute = 1000 * 60;
