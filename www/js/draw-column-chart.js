@@ -23,6 +23,9 @@ export function drawColumnChart(elementId, chartData) {
 
   let chart = anychart.column(mapping);
 
+  chart.tooltip().format('{%value} h')
+    .titleFormat('{%x}{dateTimeFormat: dd.MM}');
+
   setChart(chart, elementId);
   setChartAxes(chart);
   chart.draw();
