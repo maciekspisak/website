@@ -24,9 +24,9 @@ export function createEventData(event) {
  */
 function createDurationList(startDateTime, endDateTime) {
   const start = new Date(startDateTime);
-  const startDate = dateTools.formatDateString(start.toDateString());
+  const startDate = dateTools.simpleStringDate(start);
   const end = new Date(endDateTime);
-  const endDate = dateTools.formatDateString(end.toDateString());
+  const endDate = dateTools.simpleStringDate(end);
 
   const milisecondsInMinute = dateTools.milisecondsInMinute;
   const milisecondsInDay = dateTools.milisecondsInDay;
@@ -44,7 +44,7 @@ function createDurationList(startDateTime, endDateTime) {
   dateTools.setTimeToMidnight(endMidnight);
 
   while (endMidnight.getTime() != startNextMidnight.getTime()) {
-    durationList[dateTools.formatDateString(startNextMidnight.toDateString())] = 24 * 60;
+    durationList[dateTools.simpleStringDate(startNextMidnight)] = 24 * 60;
     startNextMidnight = new Date(startNextMidnight.getTime() + milisecondsInDay);
   };
 

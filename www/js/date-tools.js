@@ -14,11 +14,10 @@ function convertTimeZone(date, timeZone) {
 }
 
 /**
- * Changes date format to 'YYYY-MM-DD'.
- * @param {string} dateString - String to be formatted.
+ * Changes date to 'YYYY-MM-DD' string.
+ * @param {Date} date - Date to be formatted.
  */
-function formatDateString(dateString) {
-  const date = new Date(dateString);
+function simpleStringDate(date) {
   return String(date.getFullYear()) + '-' 
     + zeroPrefix(String(date.getMonth() + 1)) + '-' 
     + zeroPrefix(String(date.getDate()));
@@ -48,6 +47,6 @@ export {
   milisecondsInMinute,
   milisecondsInDay,
   convertTimeZone,
-  formatDateString,
+  simpleStringDate,
   setTimeToMidnight
 };
