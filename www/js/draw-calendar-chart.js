@@ -1,40 +1,40 @@
 import * as colorManager from './color-manager.js';
 
 
-export function drawCalendarChart(elementId) {
-  anychart.data.loadJsonFile('/data/calendar-data.json',
-    data => {
-      let dataset = anychart.data.set(data);
-      let mapping = dataset.mapAs({x: 'date', value: 'count'});
+export function drawCalendarChart(elementId, chartData) {
+  if (!chartData || chartData.length === 0) return;
+  
+  let formattedData = JSON.parse(JSON.stringify(chartData));
+  formattedData.forEach(day => day.value = (Math.round(day.value / 6) / 10));
+  const dataset = anychart.data.set(formattedData);
+  const mapping = dataset.mapAs({x: 'key', value: 'value'});
 
-      let chart = anychart.calendar(mapping);
-      let fontColor = colorManager.fontColor;
+  let chart = anychart.calendar(mapping);
+  const fontColor = colorManager.fontColor;
 
-      chart.years().title().fontColor(fontColor);
+  chart.years().title().fontColor(fontColor);
 
-      chart.months()
-        .stroke(false)
-        .noDataStroke(false)
-        .labels().fontColor(fontColor);
+  chart.months()
+    .stroke(false)
+    .noDataStroke(false)
+    .labels().fontColor(fontColor);
 
-      chart.weeks().labels().fontColor(fontColor);
+  chart.weeks().labels().fontColor(fontColor);
 
-      chart.days()
-        .spacing(3)
-        .stroke(false)
-        .noDataStroke(false)
-        .noDataFill(colorManager.backgroundSecondaryColor)
-        .noDataHatchFill(false);
+  chart.days()
+    .spacing(3)
+    .stroke(false)
+    .noDataStroke(false)
+    .noDataFill(colorManager.backgroundSecondaryColor)
+    .noDataHatchFill(false);
 
-      let customColorScale = anychart.scales.linearColor();
-      customColorScale.colors([colorManager.primaryColorFaded, colorManager.primaryColor]);
+  let customColorScale = anychart.scales.linearColor();
+  customColorScale.colors([colorManager.primaryColorFaded, colorManager.primaryColor]);
 
-      chart.tooltip().format('{%value} contribution(s)');
+  chart.tooltip().format('{%value} h');
 
-      chart.colorScale(customColorScale)
-        .colorRange(false)
-        .container(elementId)
-        .draw();
-    }
-  );
+  chart.colorScale(customColorScale)
+    .colorRange(false)
+    .container(elementId)
+    .draw();
 }
