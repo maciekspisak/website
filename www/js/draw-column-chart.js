@@ -1,6 +1,7 @@
 import {setChart} from './set-chart.js';
 import {setChartAxes} from './set-chart-axes.js';
 import * as chartDataOperations from './chart-data-operations.js';
+import {setTimeToMidnight} from './date-tools.js';
 
 
 /**
@@ -16,7 +17,7 @@ export function drawColumnChart(elementId, chartData) {
     chartDataOperations.isLastNDays(keyValuePair, showDaysCount));
   
   chartDataOperations.setZeroValuesLastNDays(filteredChartData, showDaysCount);
-  filteredChartData.sort((a, b) => new Date(a.key) - new Date(b.key));
+  filteredChartData.sort((a, b) => setTimeToMidnight(new Date(a.key)) - setTimeToMidnight(new Date(b.key)));
 
   const dataset = anychart.data.set(chartDataOperations.changeMinutesToHours(filteredChartData));
   const mapping = dataset.mapAs({x: 'key', value: 'value'});

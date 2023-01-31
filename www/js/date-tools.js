@@ -41,6 +41,7 @@ function setTimeToMidnight(dateTime) {
   dateTime.setMinutes(0);
   dateTime.setSeconds(0);
   dateTime.setMilliseconds(0);
+  return dateTime;
 }
 
 export {

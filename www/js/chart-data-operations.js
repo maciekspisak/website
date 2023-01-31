@@ -19,7 +19,7 @@ function changeMinutesToHours(chartData) {
   */
 function isLastNDays(keyValueObject, n) {
   const dateNow = new Date();
-  const date = new Date(keyValueObject.key);
+  const date = dateTools.setTimeToMidnight(new Date(keyValueObject.key));
   const startDate = new Date(dateNow.getTime() - n * dateTools.milisecondsInDay);
 
   if (startDate < date && date < dateNow) return true;
