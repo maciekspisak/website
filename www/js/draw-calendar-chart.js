@@ -10,7 +10,8 @@ import {changeMinutesToHours} from './chart-data-operations.js';
 export function drawCalendarChart(elementId, chartData) {
   if (!chartData || chartData.length === 0) return;
   
-  const dataset = anychart.data.set(changeMinutesToHours(chartData));
+  const filteredChartData = chartData.filter(object => new Date(object.key).getFullYear() === new Date().getFullYear());
+  const dataset = anychart.data.set(changeMinutesToHours(filteredChartData));
   const mapping = dataset.mapAs({x: 'key', value: 'value'});
 
   let chart = anychart.calendar(mapping);
