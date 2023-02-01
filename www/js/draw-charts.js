@@ -10,13 +10,14 @@ import {drawCalendarChart} from './draw-calendar-chart.js';
 async function drawCharts() {
   const apiInitializationFunction = await loadClientLibrary();
   const events = await apiInitializationFunction();
-  const chartData = processEvents(events);
+  const dateDurationPairs = processEvents(events)[0];
+  const eventTypeDurationPairs = processEvents(events)[1];
 
   drawLinearChart('linear_chart');
-  drawColumnChart('column_chart', chartData);
-  drawPieChart('pie_chart');
-  drawPieChart('pie_chart_2');
-  drawCalendarChart('calendar_chart', chartData);
+  drawColumnChart('column_chart', dateDurationPairs);
+  drawPieChart('pie_chart', eventTypeDurationPairs);
+  drawPieChart('pie_chart_2', eventTypeDurationPairs);
+  drawCalendarChart('calendar_chart', dateDurationPairs);
 }
 
 drawCharts();
