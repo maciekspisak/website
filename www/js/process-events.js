@@ -1,4 +1,5 @@
 import {createEventData} from './create-event-data.js';
+import * as chartDataOperations from './chart-data-operations.js';
 
 
 /** Takes events list returned by Google API 
@@ -10,9 +11,13 @@ export function processEvents(events) {
   const eventsData = events.map(createEventData);
   let dateDurationPairs = [];
   let eventTypeDurationPairs = [];
+  let dateMultiValueObjects = [];
   eventsData.forEach(event => pushOrAddDateDurationPair(dateDurationPairs, event));
   eventsData.forEach(event => pushOrAddEventTypeDurationPair(eventTypeDurationPairs, event));
-  return [dateDurationPairs, eventTypeDurationPairs];
+  eventsData.forEach(event => pushOrAddDateMultiValueObject(dateMultiValueObjects, event));
+  // chartDataOperations.setKeysWithZeroValue(
+    // dateMultiValueObjects, chartDataOperations.getKeys(dateMultiValueObjects));
+  return [dateDurationPairs, eventTypeDurationPairs, dateMultiValueObjects];
 }
 
 /**
@@ -34,9 +39,16 @@ function pushOrAddEventTypeDurationPair(array, event) {
   }
 }
 
-function pushOrAddDuration(array, key, value) {
+function pushOrAddDateMultiValueObject(array, event) {
+  const valueName = event.summary;
+  for (const [key, value] of Object.entries(event.durationList)) {
+    pushOrAddDuration(array, key, value, valueName);
+  }
+}
+
+function pushOrAddDuration(array, key, value, valueName = 'value') {
   if (array.length === 0) {
-    array.push({key: key, value: value});
+    array.push({key: key, [valueName]: value});
     return;
   };
 
@@ -44,9 +56,12 @@ function pushOrAddDuration(array, key, value) {
   for (const keyValueObject of array) {
     if (keyValueObject.key === key) {
       keyAlreadyUsed = true;
-      keyValueObject.value += value;
+      if (keyValueObject[valueName]) keyValueObject[valueName] += value;
+      else keyValueObject[valueName] = value;
       break;
     };
   };
-  if (!keyAlreadyUsed) array.push({key: key, value: value});
+  if (!keyAlreadyUsed) array.push({key: key, [valueName]: value});
 }
+
+

@@ -7,19 +7,21 @@ import * as dateTools from './date-tools.js';
  * @returns {Array.<Object>}
  */
 function changeMinutesToHours(chartData) {
-  let formattedData = JSON.parse(JSON.stringify(chartData));
-  formattedData.forEach(day => day.value = (Math.round(day.value / 6) / 10));
-  return formattedData;
+  let formattedChartData = JSON.parse(JSON.stringify(chartData));
+  for (const key of getKeys(chartData)) {
+    formattedChartData.forEach(day => day[key] = (Math.round(day[key] / 6) / 10));
+  }
+  return formattedChartData;
 }
 
- /**
-  * Checks if object fits in range of last n days.
-  * @param {Object} keyValueObject - Object of chart data containing key-value pair.
-  * @param {number} n - Count of last days.
-  */
-function isLastNDays(keyValueObject, n) {
+/**
+ * Checks if object fits in range of last n days.
+ * @param {Object} keyValuesObject - Object of chart data containing key-value pair.
+ * @param {number} n - Count of last days.
+ */
+function isLastNDays(keyValuesObject, n) {
   const dateNow = new Date();
-  const date = dateTools.setTimeToMidnight(new Date(keyValueObject.key));
+  const date = dateTools.setTimeToMidnight(new Date(keyValuesObject.key));
   const startDate = new Date(dateNow.getTime() - n * dateTools.milisecondsInDay);
 
   if (startDate < date && date < dateNow) return true;
@@ -27,21 +29,78 @@ function isLastNDays(keyValueObject, n) {
 }
 
 /**
- * Pushes objects with 0 value to fill completely chart data of last n days.
+ * Pushes objects with 0 values to fill completely chart data in given date range.
  * @param {Array.<Object>} chartData 
- * @param {number} n - Count of last days.
+ * @param {Date} startDate
+ * @param {Date} endDate = new Date()
  */
-function setZeroValuesLastNDays(chartData, n) {
-  let date = new Date();
-  for (let index = 0; index < n; index++) {
-    const sameDate = chartData.filter(keyValueObject => keyValueObject.key === dateTools.simpleStringDate(date));
-    if (sameDate.length === 0) chartData.push({key: dateTools.simpleStringDate(date), value: 0});
+function setZeroValuesInDateRange(chartData, startDate, endDate = new Date()) {
+  const keys = getKeys(chartData);
+  
+  // missing objects
+  let object = {};
+  for (const key of keys) object[key] = 0;
+
+  let date = new Date(endDate);
+  while (startDate < date) {
+    const sameDate = chartData.filter(keyValuesObject => keyValuesObject.key === dateTools.simpleStringDate(date));
+    if (sameDate.length === 0) {
+      let newObject = JSON.parse(JSON.stringify(object));
+      newObject.key = dateTools.simpleStringDate(date);
+      chartData.push(newObject);
+    }
     date = new Date(date - dateTools.milisecondsInDay);
+  };
+
+  // incomplete objects
+  setKeysWithZeroValue(chartData, keys);
+}
+
+/**
+ * Returns all the keys of objects in chartData array. Omits key = 'key'.
+ * @param {Array.<Object>} chartData 
+ * @returns {Array.<string>}
+ */
+function getKeys(chartData) {
+  let keys = [];
+  for (const object of chartData) {
+    keys.push(...Object.keys(object));
   }
+  return keys.filter(key => key !== 'key')
+    .filter((key, index, array) => array.indexOf(key) === index);
+}
+
+/**
+ * Fills key-value pairs in all incomplete objects.
+ * @param {Array.<Object>} chartData 
+ * @param {Array.<string>} keys 
+ */
+function setKeysWithZeroValue(chartData, keys) {
+  for (let object of chartData) {
+    for (const key of keys) {
+      if (!object[key])
+        object[key] = 0;
+    }
+  }
+}
+
+/**
+ * 
+ * @param {Array.<Object>} chartData 
+ * @param {number} daysCount 
+ * @returns {Array.<Object>}
+ */
+function prepareChartDataForLastNDays(chartData, daysCount) {
+  let alteredChartData = JSON.parse(JSON.stringify(chartData));
+  alteredChartData = alteredChartData.filter(dataObject => isLastNDays(dataObject, daysCount));
+
+  setZeroValuesInDateRange(alteredChartData, new Date(new Date().getTime() - daysCount * dateTools.milisecondsInDay));
+  alteredChartData.sort((a, b) => new Date(a.key) - new Date(b.key));
+  return alteredChartData;
 }
 
 export {
   changeMinutesToHours,
-  isLastNDays,
-  setZeroValuesLastNDays
+  getKeys,
+  prepareChartDataForLastNDays
 };

@@ -36,7 +36,7 @@ export function drawCalendarChart(elementId, chartData) {
   let customColorScale = anychart.scales.linearColor();
   customColorScale.colors([colorManager.primaryColorFaded, colorManager.primaryColor]);
 
-  chart.tooltip().format('{%value} h')
+  chart.tooltip().format('Contribution: {%value} h')
     .titleFormat('{%x}{dateTimeFormat: dd.MM}');
 
   chart.colorScale(customColorScale)

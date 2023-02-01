@@ -6,6 +6,7 @@ import {changeMinutesToHours} from './chart-data-operations.js';
 /**
  * Draws pie chart in selected HTML element using anychart library.
  * @param {string} elementId 
+ * @param {Array.<Object>} chartData
  */
 export function drawPieChart(elementId, chartData) {
   if (!chartData || chartData.length === 0) return;
@@ -16,8 +17,8 @@ export function drawPieChart(elementId, chartData) {
   let chart = anychart.pie(mapping);
 
   setChart(chart, elementId);
-  
-  chart.tooltip().format('{%value} h')
+
+  chart.tooltip().format('Total contribution: {%value} h')
 
   chart.innerRadius('60%')
     .labels({fontColor: fontColor, position: 'outside'})
