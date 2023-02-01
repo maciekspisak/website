@@ -3,7 +3,7 @@ import * as dateTools from './date-tools.js';
 
 /**
  * Creates data suitable for charts.
- * @param {Event} event 
+ * @param {Object} event 
  */
 export function createEventData(event) {
   const startDateTime = dateTools.convertTimeZone(event.start.dateTime || event.start.date, event.start.timeZone);

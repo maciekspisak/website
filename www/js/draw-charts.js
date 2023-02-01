@@ -6,7 +6,7 @@ import {drawPieChart} from './draw-pie-chart.js';
 import {drawCalendarChart} from './draw-calendar-chart.js';
 
 
-/** Main function in project. Fetches data and draws charts. */
+/** Main function in the project. Fetches data and draws charts. */
 async function drawCharts() {
   const apiInitializationFunction = await loadClientLibrary();
   const events = await apiInitializationFunction();
