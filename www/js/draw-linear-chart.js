@@ -7,12 +7,14 @@ import {setChartAxes} from './set-chart-axes.js';
  * @param {string} elementId 
  */
 export function drawLinearChart(elementId) {
-  anychart.data.loadJsonFile('/data/linear-data.json',
+  anychart.data.loadJsonFile('../data/linear-data.json',
     data => {
-      let chart = anychart.line(data);
+      let chart = anychart.line();
 
       setChart(chart, elementId);
       setChartAxes(chart);
+
+      chart.spline(data);
       
       chart.draw();
     }
