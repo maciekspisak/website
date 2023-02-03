@@ -1,5 +1,6 @@
 :root{
 	--font-color:#f1fa8c;
+	--secondary-font-color:#929292;
 	--background-primary-color:#282a36;
 	--background-secondary-color:#19191f;
 
@@ -14,7 +15,7 @@
 
 a{
 	font-size: 0.625rem;
-	color: #929292;
+	color: var(--secondary-font-color);
 	text-decoration: none;
 	text-align: right;
 }

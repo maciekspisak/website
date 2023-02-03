@@ -1,4 +1,5 @@
 const fontColor = getComputedStyle(document.documentElement).getPropertyValue('--font-color');
+const secondaryFontColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary-font-color');
 const backgroundPrimaryColor = getComputedStyle(document.documentElement).getPropertyValue('--background-primary-color');
 const backgroundSecondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--background-secondary-color');
 
@@ -24,6 +25,7 @@ draculaPalette.items(
 
 export {
   fontColor,
+  secondaryFontColor,
   backgroundPrimaryColor,
   backgroundSecondaryColor,
   primaryColor,
