@@ -21,15 +21,14 @@ a{
 }
 
 body{
-	color: var(--font-color);
 	background-color: var(--background-secondary-color);
 }
 
 .box-element{
+	color: var(--font-color);
 	background-color: var(--background-primary-color);
-	display: flex;
-	flex-wrap: wrap;
-  justify-content: center;
+	font-weight: lighter;
+	padding: 0.5rem;
 }
 
 .calendar-chart{
@@ -37,6 +36,11 @@ body{
 	margin: auto;
   display: inline-block;
 	vertical-align: middle;
+}
+
+.calendar-chart-wrapper{
+	line-height: 350px;
+	text-align: center;
 }
 
 .chart{
@@ -48,19 +52,42 @@ body{
 	width: 100%;
 	text-align: center;
 	font-size: 2rem;
-	font-weight: lighter;
+	padding-bottom: 0.5rem;
 }
 
-.calendar-chart-wrapper{
+.flex-container{
+	justify-content: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.hashtag{
+	margin: 0.25rem;
+	padding: 0.25rem;
+	font-size: 0.625rem;
+}
+
+.nice-placeholder{
 	-ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
 	scrollbar-width: none;  /* Hide scrollbar for Firefox */
-	width: 95%;
 	height: 350px;
-	line-height: 350px;
-	text-align: center;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
-.calendar-chart-wrapper::-webkit-scrollbar{
+.nice-placeholder::-webkit-scrollbar{
   display: none;
+}
+
+.project{
+	word-wrap: break-word;
+	text-align: center;
+	padding: 0.5rem;
+	background-color: var(--background-secondary-color);
+	color: var(--secondary-font-color);
+	margin: 0.25rem;
+	width: 15rem;
+}
+
+.project-title{
+	padding-bottom: 0.5rem;
 }
