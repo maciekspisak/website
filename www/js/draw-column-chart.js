@@ -1,6 +1,7 @@
 import {setChart} from './set-chart.js';
 import {setChartAxes} from './set-chart-axes.js';
 import * as chartDataOperations from './chart-data-operations.js';
+import {secondaryFontColor} from './color-manager.js';
 
 
 /**
@@ -18,6 +19,10 @@ export function drawColumnChart(elementId, chartData) {
   const mapping = dataset.mapAs({x: 'key', value: 'value'});
 
   let chart = anychart.column(mapping);
+
+  chart.annotations().horizontalLine().stroke(secondaryFontColor, 1, '5 5')
+    .allowEdit(false)
+    .valueAnchor(8);
 
   chart.yAxis().labels().format('{%value} h');
   chart.xAxis().labels().format('{%value}{dateTimeFormat: dd.MM}');

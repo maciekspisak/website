@@ -13,7 +13,6 @@ export function drawSplineChart(elementId, chartData) {
 
   let alteredChartData = chartDataOperations.prepareChartDataForLastNDays(chartData, 30);
   alteredChartData = chartDataOperations.changeMinutesToHours(alteredChartData);
-  console.log(alteredChartData);
 
   let chart = anychart.line();
 
