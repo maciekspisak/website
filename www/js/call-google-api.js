@@ -34,5 +34,5 @@ async function fetchEvents() {
   }
 
   // return events
-  return response.result.items;
+  return response.result;
 }
