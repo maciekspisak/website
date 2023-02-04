@@ -13,11 +13,11 @@ export async function loadClientLibrary() {
  */
 async function initializeGoogleApiClient() {
   await gapi.client.init({apiKey: apiKey, discoveryDocs: [discoveryDoc]});
-  return fetchEvents();
+  return fetchCalendar();
 }
 
 /** Serves Google API calendar events request. */
-async function fetchEvents() {
+async function fetchCalendar() {
   let response;
   try {
     const request = {
