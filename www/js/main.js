@@ -1,9 +1,9 @@
 import {loadClientLibrary} from './call-google-api.js';
 import {processEvents} from './process-events.js';
-import {drawSplineChart} from './draw-spline-chart.js';
-import {drawColumnChart} from './draw-column-chart.js';
-import {drawPieChart} from './draw-pie-chart.js';
-import {drawCalendarChart} from './draw-calendar-chart.js';
+import {drawSplineChart} from './chart/draw-spline-chart.js';
+import {drawColumnChart} from './chart/draw-column-chart.js';
+import {drawPieChart} from './chart/draw-pie-chart.js';
+import {drawCalendarChart} from './chart/draw-calendar-chart.js';
 import {parseCalendarDescription} from './parse-calendar-description.js';
 
 

@@ -1,4 +1,4 @@
-import {draculaPalette} from './color-manager.js';
+import {draculaPalette} from '../color-manager.js';
 
 
 /** Configures anychart generic chart settings. */

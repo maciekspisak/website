@@ -1,6 +1,6 @@
 import {setChart} from './set-chart.js';
 import {setChartAxes} from './set-chart-axes.js';
-import * as chartDataOperations from './chart-data-operations.js';
+import * as dataOperations from './data-operations.js';
 
 
 /**
@@ -11,13 +11,13 @@ import * as chartDataOperations from './chart-data-operations.js';
 export function drawSplineChart(elementId, chartData) {
   if (!chartData || chartData.length === 0) return;
 
-  let alteredChartData = chartDataOperations.prepareChartDataForLastNDays(chartData, 30);
-  alteredChartData = chartDataOperations.changeMinutesToHours(alteredChartData);
+  let alteredChartData = dataOperations.prepareChartDataForLastNDays(chartData, 30);
+  alteredChartData = dataOperations.changeMinutesToHours(alteredChartData);
 
   let chart = anychart.line();
 
   const dataset = anychart.data.set(alteredChartData);
-  for (const key of chartDataOperations.getKeys(alteredChartData)) {
+  for (const key of dataOperations.getKeys(alteredChartData)) {
     const series = chart.spline(dataset.mapAs({x: 'key', value: key}));
     series.name(key);
   };

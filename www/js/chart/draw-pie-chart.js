@@ -1,6 +1,6 @@
-import {fontColor} from './color-manager.js';
+import {fontColor} from '../color-manager.js';
 import {setChart} from './set-chart.js';
-import {changeMinutesToHours} from './chart-data-operations.js';
+import {changeMinutesToHours} from './data-operations.js';
 
 
 /**

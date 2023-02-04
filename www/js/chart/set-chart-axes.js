@@ -1,4 +1,4 @@
-import {fontColor} from './color-manager.js';
+import {fontColor} from '../color-manager.js';
 
 
 /** Configures anychart chart axes. */

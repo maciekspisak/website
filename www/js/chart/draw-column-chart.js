@@ -1,7 +1,7 @@
 import {setChart} from './set-chart.js';
 import {setChartAxes} from './set-chart-axes.js';
-import * as chartDataOperations from './chart-data-operations.js';
-import {secondaryFontColor} from './color-manager.js';
+import * as dataOperations from './data-operations.js';
+import {secondaryFontColor} from '../color-manager.js';
 
 
 /**
@@ -12,8 +12,8 @@ import {secondaryFontColor} from './color-manager.js';
 export function drawColumnChart(elementId, chartData) {
   if (!chartData || chartData.length === 0) return;
 
-  let alteredChartData = chartDataOperations.prepareChartDataForLastNDays(chartData, 30);
-  alteredChartData = chartDataOperations.changeMinutesToHours(alteredChartData);
+  let alteredChartData = dataOperations.prepareChartDataForLastNDays(chartData, 30);
+  alteredChartData = dataOperations.changeMinutesToHours(alteredChartData);
 
   const dataset = anychart.data.set(alteredChartData);
   const mapping = dataset.mapAs({x: 'key', value: 'value'});

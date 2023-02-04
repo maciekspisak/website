@@ -1,5 +1,5 @@
-import * as colorManager from './color-manager.js';
-import {changeMinutesToHours} from './chart-data-operations.js';
+import * as colorManager from '../color-manager.js';
+import {changeMinutesToHours} from './data-operations.js';
 
 
 /**

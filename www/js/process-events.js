@@ -1,5 +1,4 @@
 import {createEventData} from './create-event-data.js';
-import * as chartDataOperations from './chart-data-operations.js';
 
 
 /** Takes events list returned by Google API 
@@ -12,11 +11,11 @@ export function processEvents(events) {
   let dateDurationPairs = [];
   let eventTypeDurationPairs = [];
   let dateMultiValueObjects = [];
+  
   eventsData.forEach(event => pushOrAddDateDurationPair(dateDurationPairs, event));
   eventsData.forEach(event => pushOrAddEventTypeDurationPair(eventTypeDurationPairs, event));
   eventsData.forEach(event => pushOrAddDateMultiValueObject(dateMultiValueObjects, event));
-  // chartDataOperations.setKeysWithZeroValue(
-    // dateMultiValueObjects, chartDataOperations.getKeys(dateMultiValueObjects));
+
   return [dateDurationPairs, eventTypeDurationPairs, dateMultiValueObjects];
 }
 
