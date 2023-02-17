@@ -2,7 +2,7 @@ export function parseCalendarDescription(description) {
   const lines = description.split('\n');
 
   let htmlString = '';
-  
+
   for (const line of lines) {
     const lineSplit = line.split(', ');
     const title = lineSplit[0];
@@ -10,11 +10,13 @@ export function parseCalendarDescription(description) {
 
     htmlString += '<div class="project">';
     htmlString += '<div class="project-title">' + title + '</div>';
-    htmlString += '<div class="flex-container">';
-    for (const hashtag of hashtags) {
-      htmlString += '<div class="box-element hashtag">' + hashtag + '</div>';
+    if (hashtags[0] != '') {
+      htmlString += '<div class="flex-container">';
+      for (const hashtag of hashtags) {
+        htmlString += '<div class="box-element hashtag">' + hashtag + '</div>';
+      }
+      htmlString += '</div>';
     }
-    htmlString += '</div>';
     htmlString += '</div>';
   }
 
